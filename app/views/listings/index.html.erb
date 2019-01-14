@@ -1,7 +1,13 @@
+<%= paginate @listings %>
+
 <% @listings.each do |listing| %>
 
-<%= listing.title %>
-<%= listing.description %>
-<%= listing.room %>
+<%= listing.name %><br>
+<%= listing.description %><br>
+<%= listing.place_type %><br>
+<%= listing.property_type %><br>
+<br>
 
 <% end %>
+
+<%= paginate @listings %>
