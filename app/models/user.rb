@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :authentications, dependent: :destroy
   has_many :listings
 
+  enum role: [:customer, :moderator, :superadmin]
+
  # grab google to access google for user data
  def google_token
    x = self.authentications.find_by(provider: 'google_oauth2')

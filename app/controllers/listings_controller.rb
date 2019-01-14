@@ -12,23 +12,42 @@ class ListingsController < ApplicationController
 		listing.user_id = current_user.id
 		if listing.save
 			flash[:message] = "Saved!"
-			redirect_to root_path
+			redirect_to listings_path
 		else
 			flash[:message] = "Try again."
-			redirect_to root_path
+			redirect_to listings_path
 		end
 	end
 
 	def show
+		@listing = Listing.find(params[:id])
+		@user = User.find(@listing.user_id)
 	end
 
 	def edit
+		@lisintg = Listing.find(params[:id])
 	end
 
 	def update
 	end
 
 	def destroy
+		@listing = Listing.find(params[:id]).delete
+		redirect_to listings_path
+	end
+
+	def verify
+		listing = Listing.find(params[:id])
+
+		if listing.verified?
+			listing.update(verified: false)
+			flash[:message] = "It has been unverified."
+		else
+			# listing.verify = 'true'
+			listing.update(verified: true)
+			flash[:message] = "It has been verified."
+		end
+			redirect_to listing_path
 	end
 
 	private

@@ -2,6 +2,8 @@
 <p class="text-center h6 mb-3 font-weight-light">What do you want to book today, <%= @name %> </p>
 
 <% if signed_in? %>
+<p class="text-center h6 mb-3 font-weight-light">Your access level is: <%= @role %> </p>
+
 	<%= link_to "View your properties", listings_path %>
 	<%= link_to "Add a property", new_listing_path %>
 
