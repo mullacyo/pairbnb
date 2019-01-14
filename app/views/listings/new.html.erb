@@ -1,0 +1,8 @@
+<h2>New Listing!</h2>
+
+<div>
+    <%= form_with model: @listing, scope: :listing, local: true do |form| %>
+
+        <%= render partial: '/listings/form', object: form %>
+    <%end%>
+</div>

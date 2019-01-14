@@ -3,11 +3,15 @@ class User < ApplicationRecord
 
 # ====== GOOGLE AUTH BEGINS HERE ========
   has_many :authentications, dependent: :destroy
+  has_many :listings
 
  def self.create_with_auth_and_hash(authentication, auth_hash)
    user = self.create!(
-     name: auth_hash["info"]["name"],
-     email: auth_hash["info"]["email"]
+     first_name: auth_hash["info"]["given_name"],
+     last_name: auth_hash["info"]["family_name"],
+     email: auth_hash["info"]["email"],
+     birthdate: auth_hash["info"]["birthday"],
+     gender: auth_hash["info"]["gender"]
    )
    user.authentications << authentication
    return user
@@ -21,8 +25,11 @@ class User < ApplicationRecord
 
  def self.create_with_auth_and_hash(authentication, auth_hash)
    user = self.create!(
-     name: auth_hash["info"]["name"],
+     first_name: auth_hash["info"]["given_name"],
+     last_name: auth_hash["info"]["family_name"],
      email: auth_hash["info"]["email"],
+     birthdate: auth_hash["info"]["birthday"],
+     gender: auth_hash["info"]["gender"],
      password: SecureRandom.hex(10)
    )
    user.authentications << authentication

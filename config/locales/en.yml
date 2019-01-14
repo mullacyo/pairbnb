@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+
+en:
+  gender_lists:
+      "": Unspecified
+      "Male": Male
+      "Female": Female

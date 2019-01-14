@@ -1,9 +1,42 @@
 <div class="text-field">
-  <%= form.label :email %>
-  <%= form.text_field :email, type: 'email' %>
+  <%= form.label :first_name %>
+  <%= form.text_field :first_name, type: 'First Name' %>
 </div>
+
+<div class="text-field">
+  <%= form.label :last_name %>
+  <%= form.text_field :last_name, type: 'Last Name' %>
+</div>
+
+<div class="text-field">
+  <%= form.label :email %>
+  <%= form.text_field :email, type: 'E-mail' %>
+</div>
+
+<!-- Look for app/helpers/application_helper.rb -->
+<div class="text-button">
+  <%= form.label :gender %>
+  <%= form.select :gender, gender_lists %>
+</div>
+
+<div class="text-field">
+  <%= form.label :phone %>
+  <%= form.text_field :phone, type: 'Phone' %>
+</div>
+
+<div class="text-field">
+  <%= form.label :country %>
+  <%= form.text_field :country, type: 'Country' %>
+</div>
+
+<div class="text-field">
+  <%= form.label :birthdate %>
+  <%= form.text_field :birthdate, type: 'Birthdate (YYYY-MM-DD)', placeholder: 'YYYY-MM-DD', format: 'yyyy-mm-dd'%>
+</div>
+
 
 <div class="password-field">
   <%= form.label :password %>
   <%= form.password_field :password %>
 </div>
+
