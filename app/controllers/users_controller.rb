@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	
 	def index 
-		
+		@users = User.all
 	end
 
 	def create
@@ -32,7 +32,8 @@ class UsersController < ApplicationController
 			:phone, 
 			:country, 
 			:birthdate, 
-			:password
+			:password,
+			:avatar
 		)
 		end
 end

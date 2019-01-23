@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_14_083932) do
+ActiveRecord::Schema.define(version: 2019_01_17_134401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(version: 2019_01_14_083932) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_authentications_on_user_id"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "listing_id"
+    t.bigint "user_id"
+    t.integer "guest_number"
+    t.date "checkin_date"
+    t.date "checkout_date"
+    t.string "request"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_bookings_on_listing_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "listings", force: :cascade do |t|
@@ -39,29 +52,34 @@ ActiveRecord::Schema.define(version: 2019_01_14_083932) do
     t.string "country", null: false
     t.integer "zipcode", null: false
     t.float "price", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "verified"
+    t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
-    t.string "gender", null: false
-    t.string "phone", null: false
-    t.string "country", null: false
-    t.date "birthdate", null: false
+    t.string "gender"
+    t.string "phone"
+    t.string "country"
+    t.date "birthdate"
     t.integer "role", default: 0
     t.string "encrypted_password", limit: 128, null: false
     t.string "confirmation_token", limit: 128
     t.string "remember_token", limit: 128, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
   add_foreign_key "authentications", "users"
+  add_foreign_key "bookings", "listings"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "listings", "users"
 end

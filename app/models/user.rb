@@ -14,15 +14,23 @@ class User < ApplicationRecord
  end
 
  def self.create_with_auth_and_hash(authentication, auth_hash)
-   user = self.create!(
+   user = self.new(
      first_name: auth_hash["info"]["first_name"],
      last_name: auth_hash["info"]["last_name"],
      email: auth_hash["info"]["email"],
      password: SecureRandom.hex(10)
-   )
+     
+     #  user.remote_avatar_url = auth_hash["info"]["image"]
+     #  user.save
+     )
+     user.remote_avatar_url = auth_hash["info"]["image"]
+     user.save
    user.authentications << authentication
    return user
  end
 # ====== GOOGLE AUTH ENDS HERE ========
+# ====== CARRIER AVATAR UPLOAD ========
+  mount_uploader :avatar, AvatarUploader
+# ====== CARRIER AVATAR ENDS ========
 end
 

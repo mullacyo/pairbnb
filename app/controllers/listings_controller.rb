@@ -12,6 +12,8 @@ class ListingsController < ApplicationController
 		listing.user_id = current_user.id
 		if listing.save
 			flash[:message] = "Saved!"
+			@listing = Listing.find(params[:listing_id])
+			ReservationMailer.booking_email(current_user,listing.user_id,listing).deliver_now
 			redirect_to listings_path
 		else
 			flash[:message] = "Try again."

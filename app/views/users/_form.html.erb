@@ -1,3 +1,8 @@
+<div>
+  <%= form.label :avatar %>
+  <%= form.file_field :avatar %>
+</div>
+
 <div class="text-field">
   <%= form.label :first_name %>
   <%= form.text_field :first_name, type: 'First Name' %>
@@ -33,7 +38,6 @@
   <%= form.label :birthdate %>
   <%= form.text_field :birthdate, type: 'Birthdate (YYYY-MM-DD)', placeholder: 'YYYY-MM-DD', format: 'yyyy-mm-dd'%>
 </div>
-
 
 <div class="password-field">
   <%= form.label :password %>

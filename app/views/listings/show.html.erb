@@ -16,12 +16,15 @@ Price| <%= @listing.price %><br>
 Created By| <%= "#{@user.first_name} #{@user.last_name}" %> <br>
 Created On| <%= @listing.created_at.localtime %> <br>
 
-<p> Calendar (TBC) </p>
-<p> Book this Property (TBC) </p>
+Calendar (TBC) <br>
+Book this Property (TBC) <br>
 
 <% if @listing.user_id == current_user.id && signed_in? %>
     <%= link_to "Edit", edit_listing_path(@listing.id), class: "btn btn-secondary outline" %>
     <%= link_to "Delete", listing_path(@listing.id), method: :delete, class: "btn btn-secondary outline" %>
+<% elsif current_user.customer? %>
+    <%= link_to "Book It!", new_listing_booking_path(@listing.id), class: "btn btn-success" %>
+
 <% end %>
 
 <% if current_user.moderator? %>

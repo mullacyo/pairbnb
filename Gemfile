@@ -73,3 +73,13 @@ gem 'omniauth-google-oauth2'
 gem 'faker'
 
 gem 'kaminari'
+
+gem 'carrierwave', '~> 1.0'
+
+gem 'mini_magick'
+
+gem 'carrierwave-aws'
+
+gem 'braintree'
+
+gem 'sidekiq'
