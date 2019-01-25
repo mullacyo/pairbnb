@@ -1,0 +1,23 @@
+<div class="text-field">
+  <%= form.label :check_in_date %>
+  <%= form.date_field :checkin_date%>
+</div>
+
+<div class="text-field">
+  <%= form.label :check_out_date %>
+  <%= form.date_field :checkout_date%>
+</div>
+
+<div class="text-field">
+  <%= form.label :guest_number %>
+  <%= form.number_field :guest_number, min: 1, max: @guest_number%>
+</div>
+
+<div class="text-field">
+  <%= form.label :special_request %>
+  <%= form.text_field :request%>
+</div>
+
+<div class="submit-field">
+    <%= form.submit %>
+</div>

@@ -1,0 +1,26 @@
+<p>
+	<% if signed_in? %>
+		<%= link_to "Add a property", new_listing_path %>
+	<% end %>
+</p>
+
+<h4>Search Listings</h4>
+<%= form_with model: @listing, method: :get, id: "search-form", local: true do |f| %>
+	<%= render partial: '/listings/search', object: f %>
+	<datalist id="list"></datalist>
+	<datalist id="description-list"></datalist>
+<% end %>
+
+<%= paginate @listings %>
+
+<% @listings.each do |listing| %>
+
+<%= link_to listing.name, listing_path(listing.id) %><br>
+<%= listing.description %><br>
+<%= listing.place_type %><br>
+<%= listing.property_type %><br>
+<br>
+
+<% end %>
+
+<%= paginate @listings %>

@@ -1,0 +1,12 @@
+
+<div class="form mb-3">
+    <div class="form-inline mb-3">    	
+        <%= search.text_field :listing_name, placeholder: "Listing Name",id: 'listing-search', class: "form-control mr-4", list: "list" %>
+        <%= search.text_field :description, placeholder: "Any text in description", class: "form-control mr-4", list: "description-list"  %>
+	    <%= search.label :price_range %>
+	    <%= search.text_field :min_price, placeholder: "Min Price" , class: "form-control mr-2" %>
+	    to
+	    <%= search.text_field :max_price, placeholder: "Max Price", class: "form-control mr-2"  %>
+    </div>
+    <%= search.submit "Search", class: "btn btn-outline-success" %>
+</div>

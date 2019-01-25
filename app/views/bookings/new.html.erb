@@ -1,0 +1,7 @@
+<%= @listing.id %>
+
+
+
+<%= form_with model: [@listing, @booking], local: true do |form| %>
+    <%= render partial: '/bookings/form', object: form %>
+<% end %>

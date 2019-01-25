@@ -1,0 +1,15 @@
+<h1>All Users</h1>
+
+
+<% @users.each do |user| %>
+
+<% if user.avatar.file.nil? %>
+<% else %>
+    <%= image_tag user.avatar.thumb.url %> <br>
+<% end %>
+<%= user.id %> <br>
+<%= user.first_name %>
+<%= user.last_name %> <br>
+<%= user.role %> <br>
+
+<% end %>

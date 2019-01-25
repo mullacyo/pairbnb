@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+@font-face {
+	font-family: 'airbnbCereal';
+	src: url('Font_Cereal/AirbnbCereal-Medium.ttf') format('truetype');
+}
+
+* {
+	font-family: 'airbnbCereal' !important;
+}
