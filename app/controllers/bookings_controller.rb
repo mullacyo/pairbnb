@@ -16,7 +16,7 @@ class BookingsController < ApplicationController
         booking.user_id = current_user.id
         if booking.save
             flash[:message] = "Saved!"
-			ReservationMailer.booking_email(current_user,@listing.user_id,@listing).deliver_now
+			ReservationJob.perform_later(current_user,@listing.user_id,@listing)
 			redirect_to new_listing_payment_path
 		else
 			flash[:message] = "Try again."

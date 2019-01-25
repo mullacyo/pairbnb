@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   post "/listings/:id/verify" => "listings#verify", as: "verify"
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   root 'welcome#index'
-  # post '/listings/:id/payment/checkout'
+  post 'payment/checkout'
+  post '/search' => "listings#search"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 

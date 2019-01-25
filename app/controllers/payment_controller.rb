@@ -5,8 +5,6 @@ class PaymentController < ApplicationController
 
   def checkout
     nonce_from_the_client = params[:checkout_form][:payment_method_nonce]
-  
-    @listing = Listing.find(params[:listing_id])
 
     result = Braintree::Transaction.sale(
      :amount => "10.00", #this is currently hardcoded
@@ -17,7 +15,6 @@ class PaymentController < ApplicationController
      )
   
     if result.success?
-      ReservationMailer.booking_email(current_user,@listing.user_id,@listing).deliver_now
       redirect_to :root, :flash => { :success => "Transaction successful!" }
     else
       redirect_to :root, :flash => { :error => "Transaction failed. Please try again." }

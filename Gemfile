@@ -83,3 +83,5 @@ gem 'carrierwave-aws'
 gem 'braintree'
 
 gem 'sidekiq'
+
+gem 'rails_12factor'

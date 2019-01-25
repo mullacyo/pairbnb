@@ -1,6 +1,19 @@
 class ListingsController < ApplicationController
 	def index
 		@listings = Listing.page(params[:page])
+		@listings = @listings.listing_name(params[:listing_name].strip).page(params[:page]).order('created_at DESC') if params[:listing_name].present?
+		@listings = @listings.descrip(params[:description].strip).page(params[:page]).order('created_at DESC') if params[:description].present?
+	
+		if params[:min_price].present? && params[:max_price].present?
+			@listings = @listings.price(params[:min_price], params[:max_price]).page(params[:page]).order('created_at DESC') 
+		elsif params[:min_price].present?
+			@listings = @listings.where("price > #{params[:min_price]}").page(params[:page]).order('created_at DESC')
+		elsif params[:max_price].present?
+			@listings = @listings.where("price < #{params[:max_price]}").page(params[:page]).order('created_at DESC')    
+		elsif params[:tag]
+		  @listings = Listing.tagged_with(params[:tag].titleize).paginate(:page => params[:page])
+		end
+
 	end
 
 	def new
@@ -50,6 +63,16 @@ class ListingsController < ApplicationController
 			flash[:message] = "It has been verified."
 		end
 			redirect_to listing_path
+	end
+
+	def search
+		@name = Listing.search_city(params["query"])
+		@listings = Listing.all
+		# byebug
+		respond_to do |format|
+		  format.json { render json: @listings }
+		  format.js # remote: true is sent a js format and sends you to search.js.erb
+		end
 	end
 
 	private
